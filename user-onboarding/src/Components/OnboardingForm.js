@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const OnboardingForm = ({values, touched, errors}) => {
+const OnboardingForm = ({values, touched, errors, status}) => {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        console.log("Status has changed", status)
+        status && setUsers(users => [...users, status]);
+    }, [status]);
+
     return (
         <div>
+            {users.map(user => (
+                <div key={user.id}>
+                    <h2>New User Info:</h2>
+                    <p>Name: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Shhh...their top-secret password: {user.password}</p>
+                </div>
+            ))}
+
             <Form>
                 <label htmlFor="name">
                     Name: 
