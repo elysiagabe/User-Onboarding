@@ -1,6 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const OnboardingForm = ({values, touched, errors}) => {
     return (
@@ -75,17 +76,21 @@ const FormikOnboardingForm = withFormik({
             .required("Enter a secure password"),
         acceptTerms: Yup.boolean()
             .oneOf([true], "Please agree to our terms of service")
-    })
-
-    // validationSchema: Yup.object().shape({
-    //     email: Yup.string()
-    //       .email("Email not valid")
-    //       .required("Email is required"),
-    //     password: Yup.string()
-    //       .min(6, "Password must be 6 characters or longer")
-    //       .required("Password is required")
-    //   }),
+    }),
     // ==== end validation schema ==== //
+
+    // ==== begin handle submit & POST request ==== //
+    handleSubmit(values, {setStatus, resetForm}) {
+        console.log("Submitting...", values);
+        axios.post("https://reqres.in/api/users", values)
+            .then(response => {
+                console.log("Success!", response);
+                setStatus(response.data);
+                resetForm();
+            })
+            .catch(err => console.log("Oops! There was an issue handling your request", err));
+    }
+    // ==== end handle submit & POST request ==== // 
 })(OnboardingForm);
 
 export default FormikOnboardingForm;
