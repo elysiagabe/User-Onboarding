@@ -87,7 +87,8 @@ const FormikOnboardingForm = withFormik({
             .required("Enter your name"),
         email: Yup.string()
             .email("Try again! A valid email address must contain a single @ symbol.")
-            .required("Enter your email address"),
+            .required("Enter your email address")
+            .notOneOf(["waffle@syrup.com"], "Woops! Too late. That email is already taken. Need help logging in?"),
         password: Yup.string()
             .min(8, "Try again! Your password must contain at least 8 characters.")
             .required("Enter a secure password"),
