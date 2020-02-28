@@ -23,47 +23,53 @@ const OnboardingForm = ({values, touched, errors, status}) => {
                 </div>
             ))}
 
-            <Form>
+            <Form className="onboarding-form">
+                <div className="form-header">
+                    <h2>Create Your Account</h2>
+                    <p>It's quick and easy to sign up for an account. Just complete the form below, and you'll be good to go!</p>
+                </div>
                 <label htmlFor="name">
-                    Name: 
+                    Name <br />
                     <Field 
                         id="name" 
                         type="text" 
                         name="name" 
                     />
-                    {touched.name && errors.name && <p>{errors.name}</p>}
+                    <div className="error-message">{touched.name && errors.name && <p>*{errors.name}</p>}</div>
                 </label>
 
                 <label htmlFor="email">
-                    Email: 
+                    Email <br />
                     <Field 
                         id="email" 
                         type="email" 
                         name="email" 
                     />
-                    {touched.email && errors.email && <p>{errors.email}</p>}
+                    <div className="error-message">{touched.email && errors.email && <p>*{errors.email}</p>}</div>
                 </label>
 
                 <label htmlFor="password">
-                    Password: 
+                    Password <br />
                     <Field 
                         id="password"
                         type="password"
                         name="password"
                     />
-                    {touched.password && errors.password && <p>{errors.password}</p>}
+                    <div className="error-message">{touched.password && errors.password && <p>*{errors.password}</p>}</div>
                 </label>
 
-                <label htmlFor="acceptTerms">
-                    <Field 
-                        id="acceptTerms"
-                        type="checkbox"
-                        name="acceptTerms"
-                        checked={values.acceptTerms}
-                    />
-                    I have read through and agree to the terms of service.
-                    {touched.acceptTerms && errors.acceptTerms && <p>{errors.acceptTerms}</p>}
-                </label>
+                <div className="checkbox-wrapper">
+                    <label htmlFor="acceptTerms">
+                        <Field 
+                            id="acceptTerms"
+                            type="checkbox"
+                            name="acceptTerms"
+                            checked={values.acceptTerms}
+                        />
+                        I have read through and agree to the terms of service.
+                        <div className="error-message">{touched.acceptTerms && errors.acceptTerms && <p>*{errors.acceptTerms}</p>}</div>
+                    </label>
+                </div>
 
                 <button type="submit">Submit ></button>
             </Form>
@@ -88,7 +94,7 @@ const FormikOnboardingForm = withFormik({
         email: Yup.string()
             .email("Try again! A valid email address must contain a single @ symbol.")
             .required("Enter your email address")
-            .notOneOf(["waffle@syrup.com"], "Woops! Too late. That email is already taken. Need help logging in?"),
+            .notOneOf(["waffle@syrup.com"], "Woops! That email is already taken. Need help logging in?"),
         password: Yup.string()
             .min(8, "Try again! Your password must contain at least 8 characters.")
             .required("Enter a secure password"),

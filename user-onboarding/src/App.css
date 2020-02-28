@@ -1,38 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 62.5%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Quicksand';
+  line-height: 1.5;
+}
+
+*:focus {
+  outline: none;
+}
+
 .App {
+  background: #5f2c82;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #49a09d, #5f2c82);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+}
+
+
+h1 {
+  font-size: 4.8rem;
   text-align: center;
+  color: white;
+  padding: 30px;
+  text-shadow: 4px 2px 7px rgba(103, 30, 30, 0.7);
+  letter-spacing: 1px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.onboarding-form {
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 4px 2px 50px rgba(103, 30, 30, 0.5);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.form-header {
+  background: none;
+  text-align: center;
+  padding: 0 16px 12px;
+}
+
+.form-header h2 {
+  font-size: 3rem;
+  color: #49a09d;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.form-header p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #919194;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #919194;
+  margin-top: 16px;
+}
+
+input:not([type=checkbox]) {
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 4px 8px;
+  margin-top: 2px;
+  border: none;
+  border-bottom: 1px solid #C3C3C7;
+}
+
+input:not([type=checkbox]):focus-within {
+  border-left: 2px solid #49a09d;
+  border-bottom: 2px solid #49a09d;
+}
+
+input[type=checkbox] {
+  margin: 10px;
+}
+
+.checkbox-wrapper {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+button[type=submit] {
+  font-size: 1.6rem;
   color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #49a09d;
+  border: none;
+  width: 150px;
+  margin: 20px auto 0;
+  padding: 8px 0;
 }
 
-.App-link {
-  color: #61dafb;
+button[type=submit]:hover {
+  background-color: #5f2c82;
+  transition: background-color 0.5s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error-message p {
+  font-size: 1.2rem;
+  color: #EA0033;
+  font-weight: 700;
 }
+
